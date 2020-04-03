@@ -3,7 +3,6 @@
 
 <head>
     <link rel="stylesheet" href="style.css">
-    <script src="javascript.js"></script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,7 +17,8 @@
     <title>My Cookbook </title>
 </head>
 
-<body>
+<body onload="onLoad()">
+    <!--topo-->
     <header>
         <nav class="navbar navbar-expand-md bg-light navbar-light">
             <!--Brand-->
@@ -64,18 +64,18 @@
 
     <!-- Botão Modal -->
     <button type="button" class="btn btn-primary rounded-pill btn-lg botao" data-toggle="modal"
-        data-target="#exampleModal">
+        data-target="#receitaModal">
         <i class="fas fa-book-open text-white"></i>
         <span> Enviar Receita </span>
     </button>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" data-backdrop="static" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="receitaModal" data-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="receitaModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"><i
+                    <h5 class="modal-title" id="receitaModalLabel"><i
                             class="fas fa-pencil-alt pr-2 text-primary"></i>Enviar Receita
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -84,15 +84,16 @@
                 </div>
                 <div class="modal-body">
                     <div class="row m-3 mt-3">
-                        <input type="text" class="form-control form-control-lg col-xl-12 mx-auto" name="" id="nome-receita"
-                            placeholder="Nome da receita">
+                        <input type="text" class="form-control form-control-lg col-xl-12 mx-auto" name=""
+                            id="nome-receita" placeholder="Nome da receita">
                     </div>
                     <!--Upload image-->
                     <div class="row m-3 mt-5 box">
                         <div class="col-xl-5 pt-5">
-                            <label class="btn btn-primary rounded-pill col-10 float-right"><i class="fas fa-camera pr-2 text-warning"></i>
+                            <label class="btn btn-primary rounded-pill col-10 float-right"><i
+                                    class="fas fa-camera pr-2 text-warning"></i>
                                 Adicionar foto
-                                <input class="img-input" type="file" accept="image/*" onchange="carregarImagem(event)">
+                                <input class="img-input" id="carregar-imagem" type="file" accept="image/*" onchange="carregarImagem(event)">
                             </label>
                         </div>
                         <div class="col-xl-5 p-3">
@@ -102,12 +103,14 @@
                     <!--Tempo de preparo e porções-->
                     <div class="row m-3 mt-5 box">
                         <div class="col-xl-6 text-center p-3 ">
-                            <div class="font-weight-bold pt-3"><i class="fas fa-clock pr-2 text-primary"></i>Tempo de Preparo</div>
+                            <div class="font-weight-bold pt-3"><i class="fas fa-clock pr-2 text-primary"></i>Tempo de
+                                Preparo</div>
                             <input class="input-style mt-3 mb-3 rounded-pill" type="number" name="">
                             <span> Minutos </span>
                         </div>
                         <div class="col-xl-6 text-center p-3 border-left border-white">
-                            <div class="font-weight-bold pt-3"><i class="fas fa-cookie-bite pr-2 text-primary"></i>Porções</div>
+                            <div class="font-weight-bold pt-3"><i
+                                    class="fas fa-cookie-bite pr-2 text-primary"></i>Porções</div>
                             <input class="input-style mt-3 mb-3 rounded-pill" type="number" name="">
                             <span> Porções </span>
                         </div>
@@ -128,34 +131,54 @@
                     <!--Ingredientes-->
                     <div class="row m-3 mt-5 box p-3">
                         <div class="form-group col-xl-12 text-center">
-                            <p class="font-weight-bold"><i class="fas fa-utensil-spoon pr-2 text-primary"></i>Ingredientes</p>
+                            <p class="font-weight-bold"><i
+                                    class="fas fa-utensil-spoon pr-2 text-primary"></i>Ingredientes</p>
                             <p>Coloque todos os ingredientes usados na receita, um ingrediente por linha </p>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Ex: 03 ovos"></textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
+                                placeholder="Ex: 03 ovos"></textarea>
                         </div>
                     </div>
                     <!--Modo de preparo-->
                     <div class="row m-3 mt-5 box p-3">
                         <div class="form-group col-xl-12 text-center">
-                            <p class="font-weight-bold"><i class="fas fa-utensil-spoon pr-2 text-primary"></i>Modo de Preparo</p>
+                            <p class="font-weight-bold"><i class="fas fa-utensil-spoon pr-2 text-primary"></i>Modo de
+                                Preparo</p>
                             <p>Coloque todos o passo a passo do preparo </p>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Ex: Bata todos os ingredientes..."></textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
+                                placeholder="Ex: Bata todos os ingredientes..."></textarea>
                         </div>
                     </div>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary">Enviar Receita</button>
+                    <button type="button" class="btn btn-primary" onclick="inserirReceita()" data-dismiss="modal">Enviar Receita</button>
                 </div>
             </div>
         </div>
     </div>
+    <!--Card-->
 
+    <div class="row row-cols-1 row-cols-xl-4 m-5" id="card-receita">
+        <!-- 
+        <div id-receita="1" class="col mb-4"> //foi
+            <div class="card"> //foi
+                <img src="./images/bolo-de-cenoura.jpeg" class="card-img-top" alt="...">
+                <div class="card-body text-center"> // foi
+                    <p>Categoria</p>
+                    <h2 class="card-title font-weight-bold">Bolo de Cenoura</h2> //foi
+                </div>
+            </div>
+        </div>
+        -->
+    </div>
 
     <!-- Bootstrap js -->
     <script src="./node_modules/jquery/dist/jquery.slim.js"></script>
     <script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <script src="./node_modules/bootstrap/js/dist/popover.js"></script>
+    <!--JavaScript-->
+    <script src="javascript.js"></script>
 </body>
 
 </html>
