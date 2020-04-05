@@ -93,7 +93,8 @@
                             <label class="btn btn-primary rounded-pill col-10 float-right"><i
                                     class="fas fa-camera pr-2 text-warning"></i>
                                 Adicionar foto
-                                <input class="img-input" id="carregar-imagem" type="file" accept="image/*" onchange="carregarImagem(event)">
+                                <input class="img-input" id="carregar-imagem" type="file" accept="image/*"
+                                    onchange="carregarImagem(event)">
                             </label>
                         </div>
                         <div class="col-xl-5 p-3">
@@ -105,19 +106,19 @@
                         <div class="col-xl-6 text-center p-3 ">
                             <div class="font-weight-bold pt-3"><i class="fas fa-clock pr-2 text-primary"></i>Tempo de
                                 Preparo</div>
-                            <input class="input-style mt-3 mb-3 rounded-pill" type="number" name="">
+                            <input class="input-style mt-3 mb-3 rounded-pill" type="number" name="" id="tempo-preparo">
                             <span> Minutos </span>
                         </div>
                         <div class="col-xl-6 text-center p-3 border-left border-white">
                             <div class="font-weight-bold pt-3"><i
-                                    class="fas fa-cookie-bite pr-2 text-primary"></i>Porções</div>
-                            <input class="input-style mt-3 mb-3 rounded-pill" type="number" name="">
+                                    class="fas fa-pizza pr-2 text-primary"></i>Porções</div>
+                            <input class="input-style mt-3 mb-3 rounded-pill" type="number" id="porcao-receita">
                             <span> Porções </span>
                         </div>
                     </div>
                     <!--Categorias-->
                     <div class="form-group row m-3 mt-5">
-                        <select id="nome-receita" class="form-control form-control-lg col-xl-12 mx-auto">
+                        <select id="categoria" class="form-control form-control-lg col-xl-12 mx-auto">
                             <option selected>Escolha uma categoria</option>
                             <option>Rápidas</option>
                             <option>Bolos</option>
@@ -152,27 +153,31 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary" onclick="inserirReceita()" data-dismiss="modal">Enviar Receita</button>
+                    <button type="button" class="btn btn-primary" onclick="inserirReceita()" data-dismiss="modal">Enviar
+                        Receita</button>
                 </div>
             </div>
         </div>
     </div>
     <!--Card-->
-
-    <div class="row row-cols-1 row-cols-xl-4 m-5" id="card-receita">
-        <!-- 
+    <section>
+        <div class="row row-cols-1 row-cols-xl-4 m-5" id="card-receita">
+<!--
         <div id-receita="1" class="col mb-4"> //foi
             <div class="card"> //foi
-                <img src="./images/bolo-de-cenoura.jpeg" class="card-img-top" alt="...">
-                <div class="card-body text-center"> // foi
-                    <p>Categoria</p>
+                <img src="./images/bolo-de-cenoura.jpeg" class="card-img-top" alt="..."> //foi
+                <div class="card-body text-center"> //foi
+                    <p class="border-bottom border-warning">Categoria</p> //foi
                     <h2 class="card-title font-weight-bold">Bolo de Cenoura</h2> //foi
+
+                    <span><i class="fas fa-clock text-warning"></i> 60 Min</span> //foi
+                    <span><i class="fas fa-concierge-bell pl-4 text-warning"></i> 6 Porções</span> 
                 </div>
             </div>
         </div>
-        -->
-    </div>
-
+    -->
+        </div>
+    </section>
     <!-- Bootstrap js -->
     <script src="./node_modules/jquery/dist/jquery.slim.js"></script>
     <script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
