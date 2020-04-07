@@ -83,99 +83,117 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="row m-3 mt-3">
-                        <input type="text" class="form-control form-control-lg col-xl-12 mx-auto" name=""
-                            id="nome-receita" placeholder="Nome da receita">
-                    </div>
-                    <!--Upload image-->
-                    <div class="row m-3 mt-5 box">
-                        <div class="col-xl-5 pt-5">
-                            <label class="btn btn-primary rounded-pill col-10 float-right"><i
-                                    class="fas fa-camera pr-2 text-warning"></i>
-                                Adicionar foto
-                                <input class="img-input" id="carregar-imagem" type="file" accept="image/*"
-                                    onchange="carregarImagem(event)">
-                            </label>
+                    <form class="needs-validation" novalidate>
+                        <div class="row m-3 mt-3">
+                            <input type="text" class="form-control form-control-lg col-xl-12 mx-auto" name=""
+                                id="nome-receita" placeholder="Nome da receita" required>
+                            <div class="invalid-feedback">
+                                Insira o nome da receita
+                            </div>
                         </div>
-                        <div class="col-xl-5 p-3">
-                            <img class="rounded mx-auto d-block" id="img-resultado">
+                        <!--Upload image-->
+                        <div class="row m-3 mt-5 box">
+                            <div class="col-xl-5 pt-5">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="carregar-imagem" accept="image/*"
+                                        onchange="carregarImagem(event)" required>
+                                    <label class="custom-file-label">Insira uma foto</label>
+                                    <div class="invalid-feedback">Insira uma foto</div>
+                                </div>
+                            </div>
+                            <div class="col-xl-5 p-3">
+                                <img class="rounded mx-auto d-block" id="img-resultado">
+                            </div>
                         </div>
-                    </div>
-                    <!--Tempo de preparo e porções-->
-                    <div class="row m-3 mt-5 box">
-                        <div class="col-xl-6 text-center p-3 ">
-                            <div class="font-weight-bold pt-3"><i class="fas fa-clock pr-2 text-primary"></i>Tempo de
-                                Preparo</div>
-                            <input class="input-style mt-3 mb-3 rounded-pill" type="number" name="" id="tempo-preparo">
-                            <span> Minutos </span>
-                        </div>
-                        <div class="col-xl-6 text-center p-3 border-left border-white">
-                            <div class="font-weight-bold pt-3"><i
-                                    class="fas fa-pizza pr-2 text-primary"></i>Porções</div>
-                            <input class="input-style mt-3 mb-3 rounded-pill" type="number" id="porcao-receita">
-                            <span> Porções </span>
-                        </div>
-                    </div>
-                    <!--Categorias-->
-                    <div class="form-group row m-3 mt-5">
-                        <select id="categoria" class="form-control form-control-lg col-xl-12 mx-auto">
-                            <option selected>Escolha uma categoria</option>
-                            <option>Rápidas</option>
-                            <option>Bolos</option>
-                            <option>Massas</option>
-                            <option>Lanches</option>
-                            <option>Carnes</option>
-                            <option>Saudável</option>
-                            <option>Vegetarianas</option>
-                        </select>
-                    </div>
-                    <!--Ingredientes-->
-                    <div class="row m-3 mt-5 box p-3">
-                        <div class="form-group col-xl-12 text-center">
-                            <p class="font-weight-bold"><i
-                                    class="fas fa-utensil-spoon pr-2 text-primary"></i>Ingredientes</p>
-                            <p>Coloque todos os ingredientes usados na receita, um ingrediente por linha </p>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
-                                placeholder="Ex: 03 ovos"></textarea>
-                        </div>
-                    </div>
-                    <!--Modo de preparo-->
-                    <div class="row m-3 mt-5 box p-3">
-                        <div class="form-group col-xl-12 text-center">
-                            <p class="font-weight-bold"><i class="fas fa-utensil-spoon pr-2 text-primary"></i>Modo de
-                                Preparo</p>
-                            <p>Coloque todos o passo a passo do preparo </p>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
-                                placeholder="Ex: Bata todos os ingredientes..."></textarea>
-                        </div>
-                    </div>
+                        <!--Tempo de preparo e porções-->
+                        <div class="row m-3 mt-5 box">
+                            <div class="col-xl-6 text-center p-3 border-right border-white">
+                                <div class="font-weight-bold pt-3"><i class="fas fa-clock pr-2 text-primary"></i>Tempo
+                                    de Preparo</div>
+                                <div class="row justify-content-md-center">
+                                    <input class="form-control mt-4 mb-2 rounded-pill col-5" type="number" id="tempo-preparo"
+                                        required>
+                                    <span class="mt-4 ml-2 py-2"> Minutos </span>
+                                    <div class="invalid-feedback">Insira o número de minutos</div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 text-center p-3">
+                                <div class="font-weight-bold pt-3"><i class="fas fa-concierge-bell pr-2 text-primary"></i>Número
+                                    de Porções
+                                </div>
+                                <div class="row justify-content-md-center">
+                                    <input class="form-control mt-4 mb-2 rounded-pill col-5" type="number"
+                                        id="porcao-receita" required>
+                                    <span class="mt-4 ml-2 py-2"> Porções </span>
+                                    <div class="invalid-feedback">Insira o número de porções</div>
+                                </div>
+                            </div>
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary" onclick="inserirReceita()" data-dismiss="modal">Enviar
-                        Receita</button>
+                        </div>
+                        <!--Categorias-->
+                        <div class="form-group row m-3 mt-5">
+                            <select id="categoria" class=" form-control form-control-lg col-xl-12 mx-auto" required>
+                                <option selected disabled value="">Escolha uma categoria</option>
+                                <option>Rápidas</option>
+                                <option>Bolos</option>
+                                <option>Massas</option>
+                                <option>Lanches</option>
+                                <option>Carnes</option>
+                                <option>Saudável</option>
+                                <option>Vegetarianas</option>
+                            </select>
+                            <div class="invalid-feedback">Insira uma categoria</div>
+                        </div>
+                        <!--Ingredientes-->
+                        <div class="row m-3 mt-5 box p-3">
+                            <div class="form-group col-xl-12 text-center">
+                                <p class="font-weight-bold"><i
+                                        class="fas fa-utensil-spoon pr-2 text-primary"></i>Ingredientes</p>
+                                <p>Coloque todos os ingredientes usados na receita, um ingrediente por linha </p>
+                                <textarea class="form-control" id="ingredientes" rows="5"
+                                    placeholder="Ex: 03 ovos" required></textarea>
+                                    <div class="invalid-feedback">Insira os ingrediente</div>
+                            </div>
+                        </div>
+                        <!--Modo de preparo-->
+                        <div class="row m-3 mt-5 box p-3">
+                            <div class="form-group col-xl-12 text-center">
+                                <p class="font-weight-bold"><i class="fas fa-utensil-spoon pr-2 text-primary"></i>Modo
+                                    de
+                                    Preparo</p>
+                                <p>Coloque todos o passo a passo do preparo </p>
+                                <textarea class="form-control" id="preparo" rows="5"
+                                    placeholder="Ex: Bata todos os ingredientes..." required></textarea>
+                                    <div class="invalid-feedback">Insira o modo de prepraro</div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                            <button type="submit" class="btn btn-primary">Enviar Receita</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+
     <!--Card-->
     <section>
         <div class="row row-cols-1 row-cols-xl-4 m-5" id="card-receita">
-<!--
-        <div id-receita="1" class="col mb-4"> //foi
-            <div class="card"> //foi
-                <img src="./images/bolo-de-cenoura.jpeg" class="card-img-top" alt="..."> //foi
-                <div class="card-body text-center"> //foi
-                    <p class="border-bottom border-warning">Categoria</p> //foi
-                    <h2 class="card-title font-weight-bold">Bolo de Cenoura</h2> //foi
 
-                    <span><i class="fas fa-clock text-warning"></i> 60 Min</span> //foi
+        <!-- <div id-receita="1" class="col mb-4">
+            <div class="card">
+                <img src="./images/bolo-de-cenoura.jpeg" class="card-img-top" alt="...">
+                <div class="card-body text-center">
+                    <p class="border-bottom border-warning">Categoria</p>
+                    <h2 class="card-title font-weight-bold">Bolo de Cenoura</h2>
+
+                    <span><i class="fas fa-clock text-warning"></i> 60 Min</span>
                     <span><i class="fas fa-concierge-bell pl-4 text-warning"></i> 6 Porções</span> 
                 </div>
             </div>
-        </div>
-    -->
+        </div> -->
+
         </div>
     </section>
     <!-- Bootstrap js -->

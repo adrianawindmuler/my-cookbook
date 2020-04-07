@@ -1,17 +1,41 @@
 function onLoad() {
     $("#receitaModal").on('show.bs.modal', function () {
-        document.getElementById('img-resultado').src = "";
-        document.getElementById('categoria').value = "Escolha uma categoria";
+        document.querySelector('.custom-file-label').innerText = "Insira uma foto";
+        document.getElementById('categoria').value = "";
         document.getElementById('nome-receita').value = "";
-        document.getElementById('tempo-preparo'.value = "");
-        document.getElementById('porcao-receita'.value = "");
-
-
+        document.getElementById('tempo-preparo').value = "";
+        document.getElementById('porcao-receita').value = "";
+        document.getElementById('ingredientes').value = "";
+        document.getElementById('preparo').value = "";
     });
+
     $("#receitaModal").on('shown.bs.modal', function () {
         document.getElementById('nome-receita').focus();
     });
+
+    $('.needs-validation').on('submit', function (event) {
+        validarForm(event);
+    });
+
+    $('.needs-validation').find('input,select,textarea').on('focusout', function () {
+        $(this).removeClass('is-valid is-invalid');
+        $(this).addClass(this.checkValidity() ? 'is-valid' : 'is-invalid');
+    });
 };
+
+function validarForm(event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    let form = event.target;
+
+    if (form.checkValidity()) {
+        $('#receitaModal').modal('hide');
+        inserirReceita();
+    }
+
+    form.classList.add('was-validated');
+}
 
 var idReceita = 1;
 function inserirReceita() {
@@ -32,6 +56,7 @@ function criarCard() {
 
     let cardDentro = document.createElement('div');
     cardDentro.classList.add('card');
+    cardDentro.addEventListener('click', visualizarReceita());
 
     let cardBody = document.createElement('div');
     cardBody.classList.add('card-body', 'text-center', 'p-2');
@@ -40,7 +65,6 @@ function criarCard() {
 
     cardFora.append(cardDentro);
     cardDentro.append(cardBody);
-
 }
 
 function criarCardImagem() {
@@ -114,13 +138,18 @@ function criarCardPorções() {
 
 function carregarImagem(event) {
     let input = event.target;
-
     let reader = new FileReader();
 
     reader.onload = function () {
         let imgResultado = document.getElementById('img-resultado');
         imgResultado.src = reader.result;
     };
-
     reader.readAsDataURL(input.files[0]);
+
+    document.querySelector('.custom-file-label').innerText = input.files[0].name;
 };
+
+// visualizar receita
+function visualizarReceita(){
+    
+}

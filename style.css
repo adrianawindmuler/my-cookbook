@@ -23,7 +23,7 @@ button span{
     background-color: #e5e6eb;
 }
 .modal-header, .modal-footer {
-    background-color: #e5e6eb;
+    background-color: white;
 }
 
 #nome-receita, #categoria{
@@ -39,15 +39,4 @@ button span{
 }
 #img-resultado{
     height: 100px;
-}
-
-.img-input{
-    display: none;
-    padding: 10px 5px;
-}
-
-.input-style{
-    width: 20%;
-    line-height: 2;
-    text-align: center;
 }
