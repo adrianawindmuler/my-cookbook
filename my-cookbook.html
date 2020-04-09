@@ -111,14 +111,15 @@
                                 <div class="font-weight-bold pt-3"><i class="fas fa-clock pr-2 text-primary"></i>Tempo
                                     de Preparo</div>
                                 <div class="row justify-content-md-center">
-                                    <input class="form-control mt-4 mb-2 rounded-pill col-5" type="number" id="tempo-preparo"
-                                        required>
+                                    <input class="form-control mt-4 mb-2 rounded-pill col-5" type="number"
+                                        id="tempo-preparo" required>
                                     <span class="mt-4 ml-2 py-2"> Minutos </span>
                                     <div class="invalid-feedback">Insira o número de minutos</div>
                                 </div>
                             </div>
                             <div class="col-xl-6 text-center p-3">
-                                <div class="font-weight-bold pt-3"><i class="fas fa-concierge-bell pr-2 text-primary"></i>Número
+                                <div class="font-weight-bold pt-3"><i
+                                        class="fas fa-concierge-bell pr-2 text-primary"></i>Número
                                     de Porções
                                 </div>
                                 <div class="row justify-content-md-center">
@@ -150,9 +151,9 @@
                                 <p class="font-weight-bold"><i
                                         class="fas fa-utensil-spoon pr-2 text-primary"></i>Ingredientes</p>
                                 <p>Coloque todos os ingredientes usados na receita, um ingrediente por linha </p>
-                                <textarea class="form-control" id="ingredientes" rows="5"
-                                    placeholder="Ex: 03 ovos" required></textarea>
-                                    <div class="invalid-feedback">Insira os ingrediente</div>
+                                <textarea class="form-control" id="ingredientes" rows="5" placeholder="Ex: 03 ovos"
+                                    required></textarea>
+                                <div class="invalid-feedback">Insira os ingrediente</div>
                             </div>
                         </div>
                         <!--Modo de preparo-->
@@ -164,7 +165,7 @@
                                 <p>Coloque todos o passo a passo do preparo </p>
                                 <textarea class="form-control" id="preparo" rows="5"
                                     placeholder="Ex: Bata todos os ingredientes..." required></textarea>
-                                    <div class="invalid-feedback">Insira o modo de prepraro</div>
+                                <div class="invalid-feedback">Insira o modo de prepraro</div>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -180,28 +181,73 @@
     <!--Card-->
     <section>
         <div class="row row-cols-1 row-cols-xl-4 m-5" id="card-receita">
+            <!-- 
+            <div id-receita="1" class="col mb-4">
+                <div class="card">
+                    <img src="./images/bolo-de-cenoura.jpeg" class="card-img-top" alt="...">
+                    <div class="card-body text-center">
+                        <p class="border-bottom border-warning">Categoria</p>
+                        <h2 class="card-title font-weight-bold">Bolo de Cenoura</h2>
 
-        <!-- <div id-receita="1" class="col mb-4">
-            <div class="card">
-                <img src="./images/bolo-de-cenoura.jpeg" class="card-img-top" alt="...">
-                <div class="card-body text-center">
-                    <p class="border-bottom border-warning">Categoria</p>
-                    <h2 class="card-title font-weight-bold">Bolo de Cenoura</h2>
-
-                    <span><i class="fas fa-clock text-warning"></i> 60 Min</span>
-                    <span><i class="fas fa-concierge-bell pl-4 text-warning"></i> 6 Porções</span> 
+                        <span><i class="fas fa-clock text-warning"></i> 60 Min</span>
+                        <span><i class="fas fa-concierge-bell pl-4 text-warning"></i> 6 Porções</span>
+                    </div>
                 </div>
             </div>
-        </div> -->
-
+            -->
         </div>
     </section>
-    <!-- Bootstrap js -->
-    <script src="./node_modules/jquery/dist/jquery.slim.js"></script>
-    <script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="./node_modules/bootstrap/js/dist/popover.js"></script>
-    <!--JavaScript-->
-    <script src="javascript.js"></script>
+
+    <!-- Modal Visualizar -->
+    <div class="modal fade" id="visualizarModal" tabindex="-1" role="dialog" aria-labelledby="receitaModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p></p>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body modal-visualizar">
+                    <!-- Imagem / Titulo / Categoria / Tempo / Porções  -->
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <img src="" id="visualizar-imagem" class="img-fluid" alt="Responsive image">
+                        </div>
+                        <div class=" col-xl-6 text-left px-5 py-4 ">
+                            <h1 class="col-12 p-3 font-weight-bold text-primary" id="visualizar-nome-receita"></h1>
+                            <h3 class=" col-12 p-2" id="visualizar-categoria"></h3>
+                            <h3 class="col-12 p-2" id="visualizar-tempo"></h3>
+                            <h3 class="col-12 p-2" id="visualizar-porcao"></h3>
+                        </div>
+                    </div>
+                    <!-- Ingredientes -->
+                    <div class="row  p-4 m-4 ingredientes-style" >
+                        <div class="col-xl-12">
+                            <h2 class="text-center"><i class="fas fa-utensil-spoon pr-2 text-primary"></i>Ingredientes
+                            </h2>
+                            <p id="visualizar-ingredientes"></p>
+
+                        </div>
+                    </div>
+                    <!-- Prepraro -->
+                    <div class="row  p-4 m-4 preparo-style">
+                        <div class="col-xl-12">
+                            <h2 class="text-center"><i class="fas fa-utensil-spoon pr-2 text-primary"></i>Modo de Preparo
+                            </h2>
+                            <p id="visualizar-preparo"></p>
+
+                        </div>
+                    </div>
+
+                </div>
+                <!-- Bootstrap js -->
+                <script src="./node_modules/jquery/dist/jquery.slim.js"></script>
+                <script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
+                <script src="./node_modules/bootstrap/js/dist/popover.js"></script>
+                <!--JavaScript-->
+                <script src="javascript.js"></script>
 </body>
 
 </html>
