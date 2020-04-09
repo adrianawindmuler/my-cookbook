@@ -21,11 +21,12 @@ let receitas = [];
 
 function onLoad() {
     $("#receitaModal").on('show.bs.modal', function () {
-        document.querySelector('.custom-file-label').innerText = "Insira uma foto";
+        document.querySelector('.custom-file-label').innerHTML = "Insira uma foto";
+        document.querySelector('#img-resultado').src = "";
         document.getElementById('categoria').value = "";
         document.getElementById('nome-receita').value = "";
         document.getElementById('tempo-preparo').value = "";
-        document.getElementById('porcao-receita').value = "";
+        document.getElementById('numero-porcao').value = "";
         document.getElementById('ingredientes').value = "";
         document.getElementById('preparo').value = "";
     });
@@ -67,7 +68,7 @@ function inserirReceita() {
         document.getElementById('nome-receita').value,
         document.getElementById('img-resultado').src,
         document.getElementById('tempo-preparo').value,
-        document.getElementById('porcao-receita').value,
+        document.getElementById('numero-porcao').value,
         document.getElementById('categoria').value,
         document.getElementById('ingredientes').value,
         document.getElementById('preparo').value);
@@ -82,93 +83,7 @@ function inserirReceita() {
     criarCardPorções();
 
     idReceita++;
-}
-
-function criarCard() {
-    let cardFora = document.createElement('div');
-    cardFora.classList.add('col', 'mb-4', 'card-receita');
-    cardFora.setAttribute('id-receita', idReceita);
-    cardFora.setAttribute('onclick', `visualizarReceita(${idReceita})`)
-
-    let cardDentro = document.createElement('div');
-    cardDentro.classList.add('card');
-
-    let cardBody = document.createElement('div');
-    cardBody.classList.add('card-body', 'text-center', 'p-2');
-
-    document.getElementById('card-receita').appendChild(cardFora);
-
-    cardFora.append(cardDentro);
-    cardDentro.append(cardBody);
-}
-
-function criarCardImagem() {
-    let cardImagem = document.createElement('img');
-    let imagem = receitas[idReceita].fotoSrc;
-
-    cardImagem.classList.add('card-img-top');
-    cardImagem.setAttribute('src', imagem);
-    cardImagem.append(imagem);
-
-    let card = document.querySelector(`div[id-receita='${idReceita}'] .card`)
-    card.appendChild(cardImagem);
-
-    card.insertBefore(cardImagem, card.childNodes[0]);
-}
-
-function criarCardCategoria() {
-    let cardCategoria = document.createElement('p');
-    let categoria = receitas[idReceita].categoria;
-
-    cardCategoria.classList.add('mb-1', 'font-weight-light', 'text-black-50', 'border-bottom', 'border-warning', 'ml-4', 'mr-4');
-    cardCategoria.append(categoria);
-
-    let card = document.querySelector(`div[id-receita='${idReceita}'] > div > .card-body`);
-    card.appendChild(cardCategoria);
-
-    card.insertBefore(cardCategoria, card.childNodes[0]);
-
-}
-
-function criarCardTitulo() {
-    let cardTitulo = document.createElement('h4');
-    let titulo = receitas[idReceita].nome;
-
-    cardTitulo.classList.add('text-uppercase', 'm-2');
-    cardTitulo.append(titulo);
-    document.querySelector(`div[id-receita='${idReceita}'] > div > .card-body`).appendChild(cardTitulo)
-
-}
-
-function criarCardTempo() {
-    let tempoPreparo = receitas[idReceita].tempoPreparo;
-    let cardTempo = document.createElement('span');
-    let icone = document.createElement('i');
-
-    tempoPreparo = `${tempoPreparo} Min`; // tempoPrerapo + 'Min'
-
-    icone.classList.add('fas', 'fa-clock', 'text-warning', 'pr-2');
-    cardTempo.append(tempoPreparo);
-    cardTempo.append(icone);
-    document.querySelector(`div[id-receita='${idReceita}'] > div > .card-body`).appendChild(cardTempo);
-
-    cardTempo.insertBefore(icone, cardTempo.childNodes[0]);
-}
-
-function criarCardPorções() {
-    let porcaoReceita = receitas[idReceita].numeroPorcao;
-    let cardPorcao = document.createElement('span');
-    let icone = document.createElement('i');
-
-    porcaoReceita = `${porcaoReceita} Porções`; // tempoPrerapo + 'Min'
-
-    icone.classList.add('fas', 'fa-concierge-bell', 'pl-4', 'text-warning', 'pr-2');
-    cardPorcao.append(porcaoReceita);
-    cardPorcao.append(icone);
-    document.querySelector(`div[id-receita='${idReceita}'] > div > .card-body`).appendChild(cardPorcao);
-
-    cardPorcao.insertBefore(icone, cardPorcao.childNodes[0]);
-}
+};
 
 function carregarImagem(event) {
     let input = event.target;
@@ -197,7 +112,6 @@ function visualizarReceita(idReceita) {
     document.getElementById('visualizar-ingredientes').innerText = receita.ingredientes;
     document.getElementById('visualizar-preparo').innerText = receita.modoPreparo;
 
-
     $('#visualizarModal').modal('show');
 }
 
@@ -206,7 +120,7 @@ function criarMock() {
         document.getElementById('nome-receita').value = `Bolo ${i}`,
             document.getElementById('img-resultado').src = './images/bolo-de-cenoura.jpeg',
             document.getElementById('tempo-preparo').value = 30 + i,
-            document.getElementById('porcao-receita').value = 5 + i,
+            document.getElementById('numero-porcao').value = 5 + i,
             document.getElementById('categoria').value = 'Bolos',
             document.getElementById('ingredientes').value = `
             - 1/2 xícara (chá) de óleo
