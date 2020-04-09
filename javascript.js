@@ -1,4 +1,5 @@
 let receita = {
+    'id': 0,
     'nome': '',
     'fotoSrc': '',
     'tempoPreparo': 0,
@@ -7,6 +8,7 @@ let receita = {
     'ingredientes': '',
     'modoPreparo': '',
     'setDados': function (nome, fotoSrc, tempoPreparo, numeroPorcao, categoria, ingredientes, modoPreparo) {
+        this.id = idReceita;
         this.nome = nome;
         this.fotoSrc = fotoSrc;
         this.tempoPreparo = tempoPreparo;
@@ -21,14 +23,14 @@ let receitas = [];
 
 function onLoad() {
     $("#receitaModal").on('show.bs.modal', function () {
-        document.querySelector('.custom-file-label').innerHTML = "Insira uma foto";
-        document.querySelector('#img-resultado').src = "";
-        document.getElementById('categoria').value = "";
-        document.getElementById('nome-receita').value = "";
-        document.getElementById('tempo-preparo').value = "";
-        document.getElementById('numero-porcao').value = "";
-        document.getElementById('ingredientes').value = "";
-        document.getElementById('preparo').value = "";
+            document.querySelector('.custom-file-label').innerHTML = "Insira uma foto";
+            document.querySelector('#img-resultado').src = "";
+            document.getElementById('categoria').value = "";
+            document.getElementById('nome-receita').value = "";
+            document.getElementById('tempo-preparo').value = "";
+            document.getElementById('numero-porcao').value = "";
+            document.getElementById('ingredientes').value = "";
+            document.getElementById('preparo').value = "";
     });
 
     $("#receitaModal").on('shown.bs.modal', function () {
@@ -55,34 +57,34 @@ function validarForm(event) {
 
     if (form.checkValidity()) {
         $('#receitaModal').modal('hide');
-        inserirReceita();
+        enviarReceita();
     }
 
     form.classList.add('was-validated');
 }
 
-function inserirReceita() {
-    let novaReceita = { ...receita };
+function enviarReceita() {
+        let novaReceita = { ...receita };
 
-    novaReceita.setDados(
-        document.getElementById('nome-receita').value,
-        document.getElementById('img-resultado').src,
-        document.getElementById('tempo-preparo').value,
-        document.getElementById('numero-porcao').value,
-        document.getElementById('categoria').value,
-        document.getElementById('ingredientes').value,
-        document.getElementById('preparo').value);
+        novaReceita.setDados(
+            document.getElementById('nome-receita').value,
+            document.getElementById('img-resultado').src,
+            document.getElementById('tempo-preparo').value,
+            document.getElementById('numero-porcao').value,
+            document.getElementById('categoria').value,
+            document.getElementById('ingredientes').value,
+            document.getElementById('preparo').value);
 
-    receitas.push(novaReceita);
+        receitas.push(novaReceita);
 
-    criarCard();
-    criarCardImagem();
-    criarCardCategoria();
-    criarCardTitulo();
-    criarCardTempo();
-    criarCardPorções();
+        criarCard();
+        criarCardImagem();
+        criarCardCategoria();
+        criarCardTitulo();
+        criarCardTempo();
+        criarCardPorções();
 
-    idReceita++;
+        idReceita++;
 };
 
 function carregarImagem(event) {
@@ -104,19 +106,34 @@ function visualizarReceita(idReceita) {
     document.getElementById('visualizar-imagem').src = receita.fotoSrc;
     document.getElementById('visualizar-nome-receita').innerText = receita.nome;
     document.getElementById('visualizar-categoria').innerHTML =
-         `<i class='fas fa-bars text-warning'></i> ${receita.categoria}`;
-    document.getElementById('visualizar-tempo').innerHTML = 
-         `<i class="fas fa-clock text-warning"></i> ${receita.tempoPreparo} Minutos`;
-    document.getElementById('visualizar-porcao').innerHTML = 
-          `<i class="fas fa-concierge-bell text-warning"></i> ${receita.numeroPorcao} Porções`;
+        `<i class='fas fa-bars text-warning'></i> ${receita.categoria}`;
+    document.getElementById('visualizar-tempo').innerHTML =
+        `<i class="fas fa-clock text-warning"></i> ${receita.tempoPreparo} Minutos`;
+    document.getElementById('visualizar-porcao').innerHTML =
+        `<i class="fas fa-concierge-bell text-warning"></i> ${receita.numeroPorcao} Porções`;
     document.getElementById('visualizar-ingredientes').innerText = receita.ingredientes;
     document.getElementById('visualizar-preparo').innerText = receita.modoPreparo;
+    document.getElementById('hid-receita').value = idReceita;
 
     $('#visualizarModal').modal('show');
 }
 
+    //Excluir receita
+function excluirReceita(){
+    let idReceita = document.getElementById('hid-receita').value
+    let index = receitas.indexOf(x => x.id == idReceita);
+    
+    if(confirm('Tem certeza de deseja excluir a receita?')){
+        receitas.splice(index, 1)
+        $('#visualizarModal').modal('hide');
+        $(`div[id-receita='${idReceita}'`).fadeOut('slow').remove();
+    };
+
+};
+
 function criarMock() {
     for (let i = 0; i < 10; i++) {
+        
         document.getElementById('nome-receita').value = `Bolo ${i}`,
             document.getElementById('img-resultado').src = './images/bolo-de-cenoura.jpeg',
             document.getElementById('tempo-preparo').value = 30 + i,
@@ -135,6 +152,6 @@ function criarMock() {
             - Em uma tigela ou na batedeira, adicione a farinha de trigo e depois misture novamente.
             - Acrescente o fermento e misture lentamente com uma colher.
             - Asse em um forno preaquecido a 180° C por aproximadamente 40 minutos.`,
-            inserirReceita();
+            enviarReceita();
     }
 }

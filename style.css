@@ -48,3 +48,11 @@ button span{
 .ingredientes-style, .preparo-style{
  background-color: white;
 }
+
+.fa-trash-alt{
+    font-size: 20px;
+}
+#excluir-receita{
+    position: relative;
+    z-index: 1;
+}
