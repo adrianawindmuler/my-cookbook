@@ -3,12 +3,19 @@ body{
     font-size: 16px;
 }
 
+p{
+    line-height: 2.2;
+}
+
+#card-receita{
+    width: 100%;
+}
+
 .botao{
     position: fixed;
     right: 0;
     bottom: 0;
     z-index: 1;
-    margin: 40px;
 }   
 
 button i {
@@ -26,10 +33,6 @@ button span{
     background-color: white;
 }
 
-#nome-receita, #categoria{
-    background-color: #e5e6eb;
-    border: none;
-}
 .fas{
     font-size: 22px;
 }
@@ -37,6 +40,7 @@ button span{
 .box{
     background-color: #e5e6eb !important;
 }
+
 #img-resultado{
     height: 100px;
 }
