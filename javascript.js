@@ -23,14 +23,14 @@ let receitas = [];
 
 function onLoad() {
     $("#receitaModal").on('show.bs.modal', function () {
-            document.querySelector('.custom-file-label').innerHTML = "Insira uma foto";
-            document.querySelector('#img-resultado').src = "";
-            document.getElementById('categoria').value = "";
-            document.getElementById('nome-receita').value = "";
-            document.getElementById('tempo-preparo').value = "";
-            document.getElementById('numero-porcao').value = "";
-            document.getElementById('ingredientes').value = "";
-            document.getElementById('preparo').value = "";
+        document.querySelector('.custom-file-label').innerHTML = "Insira uma foto";
+        document.querySelector('#img-resultado').src = "";
+        document.getElementById('categoria').value = "";
+        document.getElementById('nome-receita').value = "";
+        document.getElementById('tempo-preparo').value = "";
+        document.getElementById('numero-porcao').value = "";
+        document.getElementById('ingredientes').value = "";
+        document.getElementById('preparo').value = "";
     });
 
     $("#receitaModal").on('shown.bs.modal', function () {
@@ -64,27 +64,27 @@ function validarForm(event) {
 }
 
 function enviarReceita() {
-        let novaReceita = { ...receita };
+    let novaReceita = { ...receita };
 
-        novaReceita.setDados(
-            document.getElementById('nome-receita').value,
-            document.getElementById('img-resultado').src,
-            document.getElementById('tempo-preparo').value,
-            document.getElementById('numero-porcao').value,
-            document.getElementById('categoria').value,
-            document.getElementById('ingredientes').value,
-            document.getElementById('preparo').value);
+    novaReceita.setDados(
+        document.getElementById('nome-receita').value,
+        document.getElementById('img-resultado').src,
+        document.getElementById('tempo-preparo').value,
+        document.getElementById('numero-porcao').value,
+        document.getElementById('categoria').value,
+        document.getElementById('ingredientes').value,
+        document.getElementById('preparo').value);
 
-        receitas.push(novaReceita);
+    receitas.push(novaReceita);
 
-        criarCard();
-        criarCardImagem();
-        criarCardCategoria();
-        criarCardTitulo();
-        criarCardTempo();
-        criarCardPorções();
+    criarCard();
+    criarCardImagem();
+    criarCardCategoria();
+    criarCardTitulo();
+    criarCardTempo();
+    criarCardPorções();
 
-        idReceita++;
+    idReceita++;
 };
 
 function carregarImagem(event) {
@@ -102,7 +102,10 @@ function carregarImagem(event) {
 
 // visualizar receita
 function visualizarReceita(idReceita) {
-    let receita = receitas[idReceita];
+    let findIdReceita = receitas.find(x => x.id == idReceita);
+    let index = receitas.indexOf(findIdReceita);
+    let receita = receitas[index];
+
     document.getElementById('visualizar-imagem').src = receita.fotoSrc;
     document.getElementById('visualizar-nome-receita').innerText = receita.nome;
     document.getElementById('visualizar-categoria').innerHTML =
@@ -118,12 +121,13 @@ function visualizarReceita(idReceita) {
     $('#visualizarModal').modal('show');
 }
 
-    //Excluir receita
-function excluirReceita(){
+//Excluir receita
+function excluirReceita() {
     let idReceita = document.getElementById('hid-receita').value
-    let index = receitas.indexOf(x => x.id == idReceita);
-    
-    if(confirm('Tem certeza de deseja excluir a receita?')){
+    let receita = receitas.find(x => x.id == idReceita)
+    let index = receitas.indexOf(receita);
+
+    if (confirm('Tem certeza de deseja excluir a receita?')) {
         receitas.splice(index, 1)
         $('#visualizarModal').modal('hide');
         $(`div[id-receita='${idReceita}'`).fadeOut('slow').remove();
@@ -133,8 +137,7 @@ function excluirReceita(){
 
 function criarMock() {
     for (let i = 0; i < 10; i++) {
-        
-        document.getElementById('nome-receita').value = `Bolo ${i}`,
+            document.getElementById('nome-receita').value = `Bolo ${i}`,
             document.getElementById('img-resultado').src = './images/bolo-de-cenoura.jpeg',
             document.getElementById('tempo-preparo').value = 30 + i,
             document.getElementById('numero-porcao').value = 5 + i,
